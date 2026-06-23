@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>Join us</title>
+   <style>
+body{
+    background-color:black;
+    color:white;
+    text-align:center;
+}
+h1{
+    color:red;
+    font-size:40px;
+    text-shadow:0px 0px 10px red;
+}
+.form-container{
+    width:400px;
+    margin:auto;
+    padding:30px;
+    border:2px solid red;
+    border-radius:20px;
+    box-shadow:0px 0px 15px red;
+    transition:0.3s;
+}
+.form-container:hover{
+    box-shadow:0px 0px 25px red;
+}
+button{
+  background-color:red;
+  color:white;
+  padding:15px;
+  margin:20px;
+  border-radius:20px;
+  font-size:20px;
+  box-shadow:5px 5px 10px gray;
+  border:2px solid grey;
+  transition:0.3s;
+}
+button:hover{
+  background-color:darkred;
+  transform:scale(1.05);
+}
+input, select{
+  width:80%;
+    padding:10px;
+    margin:5px;
+    border-radius:10px;
+}
+.navbar{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+}
+.navbar a:hover{
+    color:yellow;
+}
+</style>
+</head>
+  <body>
+    <h1>Join Now</h1>
+    <p>Fill out the form below to join Muscle Mind Gym.</p>
+    <div class="form-container">
+    <form>
+<label>Name:</label>
+<input type="text">
+<br><br>
+<label>Phone:</label>
+<input type="number">
+<br><br>
+<label>Email:</label> 
+<input type="email">
+<br><br>
+<label>Age:</label>
+<input type="number">
+<br><br>
+<label>Membership:</label>
+<select>
+    <option>Basic Plan</option>
+    <option>Premium Plan</option>
+    <option>Elite Plan</option>
+</select>
+<br><br>
+<button type="button" onclick="location.href='thankyou.html'">
+    Submit
+</button>
+</form></div>
+</body>
+</html>

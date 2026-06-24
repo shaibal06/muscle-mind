@@ -9,6 +9,30 @@
 }
 h1{
     color:red;
+    font-size:40px;
+    text-shadow:0px 0px 10px red;
+}
+.about{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    margin:30px;
+}
+
+.about-text{
+    width:500px;
+}
+
+.about-image img{
+    width:350px;
+    border-radius:20px;
+    box-shadow:0px 0px 15px gray;
+    transition:0.3s;
+}
+
+.about-image img:hover{
+    transform:scale(1.05);
 }
 h2{
     color:orange;
@@ -43,8 +67,15 @@ p{
 <a href="membership.html">Membership</a> |
 <a href="contact.html">Contact Us</a>
 </div>
+<div class="about">
+  <div class="about-text">
     <h1>About Muscle Mind Gym</h1>
     <p>Muscle Mind Gym is a modern premium fitness center dedicated to helping members achieve their fitness goals through professional training, advanced equipment, and a motivating environment.</p>
+    </div>
+    <div class="about-image">
+      <img src="interior.jpeg">
+    </div>
+    </div>
     <h2>Our Mission</h2>
     <p>To help members achieve their fitness goals through expert guidance and quality equipment.</p>
 <h3>Our Facilities</h3>

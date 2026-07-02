@@ -32,32 +32,9 @@
     Submit
 </button>
 </form></div>
-<script>
-function validateForm(){
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let email = document.getElementById("email").value;
-    let age = document.getElementById("age").value;
-    let plan = document.getElementById("plan").value;
-    if(name=="" || phone=="" || email=="" || age=="" || plan==""){
-        alert("Please fill all the fields.");
-    }
-    else if(!email.includes("@") || !email.includes(".")){
-    alert("Please enter a valid email address.");
-}
-    else if(phone.length != 10){
-        alert("Phone number must contain exactly 10 digits.");
-    }
-    else if(age < 16){
-        alert("You must be at least 16 years old to join.");
-    }
-    else{
-    location.href="thankyou.html";
-    }
-}
-</script>
-</body>
-<footer>
+  <footer>
     <p>© 2026 Muscle Mind Gym | All Rights Reserved</p>
 </footer>
+<script src="script.js"></script>
+</body>
 </html>

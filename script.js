@@ -1,85 +1,82 @@
-// Age Validation Function
-function checkAge() {
+// Google Apps Script URL
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbzv0a4CYlVHsi-mRXhalAmIJ-vy3cZiQqmIqBIKBG4Hh-HGcFd6srAclxwDSylGRwNW/exec";
 
-    let age = document.getElementById("age").value;
-
-    if (age == "") {
-        alert("Please enter your age.");
-        return false;
-    }
-    else if (age >= 18) {
-        return true;
-    }
-    else {
+// Age Validation
+function checkAge(age) {
+    if (age < 18) {
         alert("You must be 18 or older.");
         return false;
     }
+    return true;
 }
 
-// Main Form Validation
-function validateForm() {
+// Main Form Validation & Submit
+async function validateForm() {
 
-    let name = document.getElementById("name").value;
-    let phone = document.getElementById("phone").value;
-    let email = document.getElementById("email").value;
-    let age = document.getElementById("age").value;
+    let name = document.getElementById("name").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let age = document.getElementById("age").value.trim();
     let plan = document.getElementById("plan").value;
 
-    // Empty field validation
-    if (name == "" || phone == "" || email == "" || age == "" || plan == "") {
-        alert("Please fill all the fields.");
+    // Empty Fields
+    if (!name || !phone || !email || !age || !plan) {
+        alert("Please fill all fields.");
         return;
     }
 
-    // Email validation
-    if (!email.includes("@") || !email.includes(".")) {
-        alert("Please enter a valid email address.");
-        return;
-    }
-
-    // Phone validation
-    if (phone.length != 10) {
+    // Phone Validation
+    if (!/^[0-9]{10}$/.test(phone)) {
         alert("Phone number must contain exactly 10 digits.");
         return;
     }
 
-    // Age validation
-    if (!checkAge()) {
+    // Email Validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Please enter a valid email address.");
         return;
     }
 
-    // Data object
-    const data = {
-        name: name,
-        phone: phone,
-        email: email,
-        age: age,
-        plan: plan
-    };
+    // Age Validation
+    if (!checkAge(Number(age))) {
+        return;
+    }
 
-    // Loading Popup
     const loadingPopup = document.getElementById("loadingPopup");
     const successPopup = document.getElementById("successPopup");
     const successMessage = document.getElementById("successMessage");
 
-    if (loadingPopup) {
-        loadingPopup.style.display = "flex";
-    }
+    const data = {
+        name,
+        phone,
+        email,
+        age,
+        plan
+    };
 
-    // Send Data to Google Sheet
-    fetch("https://script.google.com/macros/s/AKfycbzv0a4CYlVHsi-mRXhalAmIJ-vy3cZiQqmIqBIKBG4Hh-HGcFd6srAclxwDSylGRwNW/exec", {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(data)
-    });
+    try {
 
-    // Show Success Popup
-    setTimeout(function () {
+        // Show Loading Popup
+        if (loadingPopup) {
+            loadingPopup.style.display = "flex";
+        }
 
+        await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        // Hide Loading
         if (loadingPopup) {
             loadingPopup.style.display = "none";
         }
 
+        // Success Message
         if (successMessage) {
             successMessage.innerHTML =
                 "Welcome to Muscle Mind Gym, " + name + "!";
@@ -89,23 +86,18 @@ function validateForm() {
             successPopup.style.display = "flex";
         }
 
-    }, 1500);
+    } catch (error) {
+
+        if (loadingPopup) {
+            loadingPopup.style.display = "none";
+        }
+
+        console.error(error);
+        alert("Failed to submit form. Please try again.");
+    }
 }
 
 // Continue Button
 function goToThankYou() {
-    const target = new URL("./thankyou.html", window.location.href).href;
-    window.top.location.replace(target);
-}
-// Welcome Function
-function welcomeMember() {
-
-    let name = document.getElementById("name").value;
-
-    if (name == "") {
-        alert("Please enter your name.");
-    }
-    else {
-        alert("Welcome to Muscle Mind Gym, " + name + "!");
-    }
+    window.location.href = "thankyou.html";
 }

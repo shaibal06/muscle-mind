@@ -16,17 +16,17 @@ function checkAge() {
     }
 }
 
-
 // Main Form Validation
 function validateForm() {
 
     let name = document.getElementById("name").value;
     let phone = document.getElementById("phone").value;
     let email = document.getElementById("email").value;
+    let age = document.getElementById("age").value;
     let plan = document.getElementById("plan").value;
 
-    // Check empty fields
-    if (name == "" || phone == "" || email == "" || plan == "") {
+    // Empty field validation
+    if (name == "" || phone == "" || email == "" || age == "" || plan == "") {
         alert("Please fill all the fields.");
         return;
     }
@@ -48,13 +48,56 @@ function validateForm() {
         return;
     }
 
-    // Success
-    alert("Welcome to Muscle Mind Gym, " + name + "!");
-    location.href = "thankyou.html";
+    // Data object
+    const data = {
+        name: name,
+        phone: phone,
+        email: email,
+        age: age,
+        plan: plan
+    };
+
+    // Loading Popup
+    const loadingPopup = document.getElementById("loadingPopup");
+    const successPopup = document.getElementById("successPopup");
+    const successMessage = document.getElementById("successMessage");
+
+    if (loadingPopup) {
+        loadingPopup.style.display = "flex";
+    }
+
+    // Send Data to Google Sheet
+    fetch("https://script.google.com/macros/s/AKfycbzv0a4CYlVHsi-mRXhalAmIJ-vy3cZiQqmIqBIKBG4Hh-HGcFd6srAclxwDSylGRwNW/exec", {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data)
+    });
+
+    // Show Success Popup
+    setTimeout(function () {
+
+        if (loadingPopup) {
+            loadingPopup.style.display = "none";
+        }
+
+        if (successMessage) {
+            successMessage.innerHTML =
+                "Welcome to Muscle Mind Gym, " + name + "!";
+        }
+
+        if (successPopup) {
+            successPopup.style.display = "flex";
+        }
+
+    }, 1500);
 }
 
-
-// Optional Welcome Function
+// Continue Button
+function goToThankYou() {
+    const target = new URL("./thankyou.html", window.location.href).href;
+    window.top.location.replace(target);
+}
+// Welcome Function
 function welcomeMember() {
 
     let name = document.getElementById("name").value;
@@ -63,6 +106,6 @@ function welcomeMember() {
         alert("Please enter your name.");
     }
     else {
-        alert("Welcome " + name + "!");
+        alert("Welcome to Muscle Mind Gym, " + name + "!");
     }
 }

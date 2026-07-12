@@ -36,5 +36,24 @@
     <p>© 2026 Muscle Mind Gym | All Rights Reserved</p>
 </footer>
 <script src="script.js"></script>
+    <!-- Loading Popup -->
+<div id="loadingPopup" class="popup">
+    <div class="popup-box">
+        <div class="loader"></div>
+        <p>Submitting Membership...</p>
+    </div>
+</div>
+
+<!-- Success Popup -->
+<div id="successPopup" class="popup">
+    <div class="popup-box">
+        <h2>🎉 Success!</h2>
+        <p id="successMessage">Membership Registered Successfully.</p>
+<button onclick=window.location.href = "thankyou.html";>
+Continue
+</button>
+    </div>
+</div>
+    <iframe src="thankyou.html" style="display:none;" aria-hidden="true"></iframe>
 </body>
 </html>

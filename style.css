@@ -1,3 +1,372 @@
+/* =========================
+   General Styles
+========================= */
+
+body{
+    background: linear-gradient(
+        -45deg,
+        #000000,
+        #1a0000,
+        #330000,
+        #000000
+    );
+    background-size: 400% 400%;
+    animation: bgAnimation 12s ease infinite;
+
+    color:white;
+    text-align:center;
+    margin:0;
+    font-family:Arial, sans-serif;
+}
+
+@keyframes bgAnimation{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+a{
+    text-decoration:none;
+    color:white;
+}
+
+/* =========================
+   Headings
+========================= */
+
+h1{
+    color:red;
+    font-size:40px;
+
+    text-shadow:
+        0 0 10px red,
+        0 0 20px red,
+        0 0 40px red;
+
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{
+        text-shadow:
+            0 0 10px red,
+            0 0 20px red;
+    }
+
+    to{
+        text-shadow:
+            0 0 20px red,
+            0 0 40px red,
+            0 0 60px red;
+    }
+}
+
+h2{
+    color:yellow;
+    font-size:30px;
+}
+
+h3{
+    color:orange;
+    font-size:28px;
+}
+
+p{
+    font-size:20px;
+    margin:15px;
+    line-height:1.6;
+}
+
+/* =========================
+   Navigation Bar
+========================= */
+
+.navbar{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+
+    position:sticky;
+    top:0;
+
+    background:rgba(0,0,0,0.7);
+    backdrop-filter:blur(10px);
+
+    padding:20px;
+    z-index:1000;
+}
+
+.navbar a{
+    color:white;
+    font-size:20px;
+    transition:0.3s;
+}
+
+.navbar a:hover{
+    color:yellow;
+    text-shadow:0 0 10px yellow;
+}
+
+/* =========================
+   Hero Section
+========================= */
+
+.hero{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    margin:40px;
+}
+
+.hero-text{
+    width:450px;
+}
+
+.hero-image img{
+    width:350px;
+}
+
+/* =========================
+   About Section
+========================= */
+
+.about{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:50px;
+    margin:40px;
+}
+
+.about-text{
+    width:500px;
+}
+
+.about-image img{
+    width:350px;
+}
+
+/* =========================
+   Trainer Section
+========================= */
+
+.trainer{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:80px;
+    margin:40px;
+}
+
+.trainer-text{
+    width:450px;
+}
+
+.trainer-image img{
+    width:350px;
+}
+
+/* =========================
+   Images
+========================= */
+
+img{
+    border-radius:20px;
+    box-shadow:0 0 20px red;
+    transition:0.4s;
+}
+
+img:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 35px red;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+button{
+    background-color:red;
+    color:white;
+    padding:15px 25px;
+    margin:20px;
+    border-radius:20px;
+    border:2px solid gray;
+    font-size:20px;
+    cursor:pointer;
+
+    animation:pulse 2s infinite;
+
+    transition:0.3s;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+button:hover{
+    background-color:darkred;
+    box-shadow:0 0 25px red;
+}
+
+/* =========================
+   Membership Cards
+========================= */
+
+.plans{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    border:2px solid red;
+    padding:20px;
+    margin:10px;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(8px);
+
+    box-shadow:0 0 15px red;
+
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px red;
+}
+
+/* =========================
+   Join Form
+========================= */
+
+.form-container{
+    width:400px;
+    margin:auto;
+    padding:30px;
+
+    border:2px solid red;
+    border-radius:20px;
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(8px);
+
+    box-shadow:0 0 20px red;
+
+    transition:0.3s;
+}
+
+.form-container:hover{
+    box-shadow:0 0 35px red;
+}
+
+input,
+select{
+    width:80%;
+    padding:10px;
+    margin:5px;
+
+    border:none;
+    border-radius:10px;
+
+    font-size:16px;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer{
+    background:black;
+    color:white;
+
+    text-align:center;
+    padding:20px;
+    margin-top:30px;
+
+    border-top:2px solid red;
+}
+
+/* =========================
+   Mobile Responsive
+========================= */
+
+@media (max-width:768px){
+
+    .hero,
+    .trainer,
+    .about,
+    .plans{
+        flex-direction:column;
+    }
+
+    .hero-text,
+    .trainer-text,
+    .about-text{
+        width:90%;
+    }
+
+    img{
+        width:90%;
+        max-width:350px;
+    }
+
+    .form-container{
+        width:85%;
+    }
+
+    .navbar{
+        flex-wrap:wrap;
+    }
+}
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.popup-box{
+    background:#220000;
+    border:2px solid red;
+    box-shadow:0 0 25px red;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    color:white;
+    width:300px;
+}
+
+.popup-box h2{
+    color:red;
+    text-shadow:0 0 15px red;
+}
 
 .popup-box button{
     margin-top:15px;
